@@ -1,10 +1,13 @@
 package com.rpgmain.controllers;
 
-public class MainController {
-    private static final WindowController window = new WindowController();
+import javax.swing.*;
 
+public class MainController {
     public static void main(String[] args) {
-        window.MainMenu();
-        window.StartWindow();
+        SwingUtilities.invokeLater(MainController::StartGame);
+    }
+
+    private static void StartGame() {
+        WindowController.StartWindow(new MainMenuPanel());
     }
 }
