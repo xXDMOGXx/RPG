@@ -13,10 +13,14 @@ public class MainController {
     }
 
     public static void newGame() {
+        WindowController.changeWindow(new MainGamePanel());
+    }
+
+    public static void saveGame(int saveSlot) {
 
     }
 
-    public static void playGame(int saveSlot) {
-
+    public static void loadGame(int saveSlot) {
+        System.out.println(saveSlot);
     }
 }

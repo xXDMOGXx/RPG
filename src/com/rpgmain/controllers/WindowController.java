@@ -1,16 +1,13 @@
 package com.rpgmain.controllers;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.Box;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.Objects;
 
 public class WindowController {
     private static final JFrame frame = new JFrame("Generic RPG");
+    public static String currentWindow = "";
     // Window Size is 1248 x 720
 
     public static void startWindow(JPanel panel) {
@@ -20,6 +17,7 @@ public class WindowController {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        currentWindow = panel.getName();
     }
 
     public static void changeWindow(JPanel panel) {
@@ -27,6 +25,7 @@ public class WindowController {
         frame.add(panel);
         frame.pack();
         frame.repaint();
+        currentWindow = panel.getName();
     }
 
     public static void closeWindow() {
@@ -37,6 +36,7 @@ public class WindowController {
 class MainMenuPanel extends JPanel {
     public MainMenuPanel() {
         initUI();
+        this.setName("Main Menu");
     }
 
     private void initUI() {
@@ -91,17 +91,36 @@ class MainMenuPanel extends JPanel {
 }
 
 class MainGamePanel extends JPanel {
+    private final Image circle;
     public MainGamePanel() {
         initUI();
+        circle = new ImageIcon(Objects.requireNonNull(MainGamePanel.class.getResource("/com/rpgmain/resources/circle.jpg"))).getImage();
+    }
+    private void initUI() {
+        BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        setLayout(boxlayout);
+        setBorder(new EmptyBorder(new Insets(75, 0, 595, 0)));
+
+        JLabel title = new JLabel("Image Test");
+        title.setPreferredSize(new Dimension(300, 50));
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        add(Box.createRigidArea(new Dimension(1248, 0)));
+        add(Box.createVerticalGlue());
+        add(title);
     }
 
-    private void initUI() {
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(circle, 0, 0, this);
     }
 }
 
 class LoadMenuPanel extends JPanel {
     public LoadMenuPanel() {
         initUI();
+        this.setName("Main Load");
     }
 
     private void initUI() {
@@ -152,10 +171,10 @@ class LoadMenuPanel extends JPanel {
         add(Box.createVerticalGlue());
         add(menuButton);
 
-        save1Button.addActionListener(e -> MainController.playGame(1));
-        save2Button.addActionListener(e -> MainController.playGame(2));
-        save3Button.addActionListener(e -> MainController.playGame(3));
-        save4Button.addActionListener(e -> MainController.playGame(4));
+        save1Button.addActionListener(e -> MainController.loadGame(1));
+        save2Button.addActionListener(e -> MainController.loadGame(2));
+        save3Button.addActionListener(e -> MainController.loadGame(3));
+        save4Button.addActionListener(e -> MainController.loadGame(4));
         menuButton.addActionListener(e -> WindowController.changeWindow(new MainMenuPanel()));
     }
 }
@@ -163,6 +182,7 @@ class LoadMenuPanel extends JPanel {
 class SettingsMenuPanel extends JPanel {
     public SettingsMenuPanel() {
         initUI();
+        this.setName("Main Settings");
     }
 
     private void initUI() {
