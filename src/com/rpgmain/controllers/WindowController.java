@@ -90,6 +90,20 @@ class MainMenuPanel extends JPanel {
     }
 }
 
+class MainGameContainerPanel extends JPanel {
+    public MainGameContainerPanel() {
+        initUI();
+    }
+
+    private void initUI() {
+        BoxLayout boxlayout = new BoxLayout(this, BoxLayout.X_AXIS);
+        setLayout(boxlayout);
+
+        add(new SideMenuPanel());
+        add(new MainGamePanel());
+    }
+}
+
 class MainGamePanel extends JPanel {
     private final Image circle;
     public MainGamePanel() {
@@ -105,8 +119,7 @@ class MainGamePanel extends JPanel {
         title.setPreferredSize(new Dimension(300, 50));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createRigidArea(new Dimension(1248, 0)));
-        add(Box.createVerticalGlue());
+        add(Box.createRigidArea(new Dimension(912, 75)));
         add(title);
     }
 
@@ -114,6 +127,33 @@ class MainGamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(circle, 0, 0, this);
+    }
+}
+
+class SideMenuPanel extends JPanel {
+    public SideMenuPanel() {
+        initUI();
+    }
+    private void initUI() {
+        BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        setLayout(boxlayout);
+        setBorder(new EmptyBorder(new Insets(75, 0, 520, 0)));
+
+        JLabel title = new JLabel("Side Menu");
+        title.setPreferredSize(new Dimension(300, 50));
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(300, 75));
+        backButton.setMaximumSize(backButton.getPreferredSize());
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        add(Box.createRigidArea(new Dimension(336, 0)));
+        add(title);
+        add(Box.createVerticalGlue());
+        add(backButton);
+
+        backButton.addActionListener(e -> WindowController.changeWindow(new MainMenuPanel()));
     }
 }
 
@@ -159,7 +199,7 @@ class LoadMenuPanel extends JPanel {
 
         add(Box.createRigidArea(new Dimension(1248, 0)));
         add(title);
-        add(Box.createRigidArea(new Dimension(0, 150)));
+        add(Box.createRigidArea(new Dimension(0, 100)));
         add(Box.createVerticalGlue());
         add(save1Button);
         add(Box.createVerticalGlue());
@@ -168,6 +208,7 @@ class LoadMenuPanel extends JPanel {
         add(save3Button);
         add(Box.createVerticalGlue());
         add(save4Button);
+        add(Box.createRigidArea(new Dimension(0, 50)));
         add(Box.createVerticalGlue());
         add(menuButton);
 
@@ -186,25 +227,54 @@ class SettingsMenuPanel extends JPanel {
     }
 
     private void initUI() {
-        BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
-        setLayout(boxlayout);
-        setBorder(new EmptyBorder(new Insets(75, 0, 370, 0)));
+        BoxLayout mainLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        setLayout(mainLayout);
+        setBorder(new EmptyBorder(new Insets(75, 0, 70, 0)));
+
+        JPanel panel = new JPanel();
+        BoxLayout subLayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+        panel.setLayout(subLayout);
+        JScrollPane jScrollPane = new JScrollPane(panel);
+        jScrollPane.setPreferredSize(new Dimension(300, 350));
+        jScrollPane.setMaximumSize(jScrollPane.getPreferredSize());
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        jScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        jScrollPane.getViewport().add(panel);
 
         JLabel title = new JLabel("Settings Menu");
         title.setPreferredSize(new Dimension(300, 50));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton menuButton = new JButton("Main Menu");
-        menuButton.setPreferredSize(new Dimension(300, 75));
-        menuButton.setMaximumSize(menuButton.getPreferredSize());
-        menuButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton audioToggle = new JButton("Play Audio");
+        audioToggle.setPreferredSize(new Dimension(200, 75));
+        audioToggle.setMaximumSize(audioToggle.getPreferredSize());
+        audioToggle.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton runToggle = new JButton("Always Run");
+        runToggle.setPreferredSize(new Dimension(200, 75));
+        runToggle.setMaximumSize(runToggle.getPreferredSize());
+        runToggle.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(300, 75));
+        backButton.setMaximumSize(backButton.getPreferredSize());
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(audioToggle);
+        panel.add(runToggle);
 
         add(Box.createRigidArea(new Dimension(1248, 0)));
         add(title);
-        add(Box.createRigidArea(new Dimension(0, 150)));
+        add(Box.createRigidArea(new Dimension(0, 50)));
         add(Box.createVerticalGlue());
-        add(menuButton);
+        add(jScrollPane);
+        add(Box.createRigidArea(new Dimension(0, 50)));
+        add(Box.createVerticalGlue());
+        add(backButton);
 
-        menuButton.addActionListener(e -> WindowController.changeWindow(new MainMenuPanel()));
+        audioToggle.addActionListener(e -> MainController.changeSetting(0, 2));
+        runToggle.addActionListener(e -> MainController.changeSetting(0, 2));
+        backButton.addActionListener(e -> WindowController.changeWindow(new MainMenuPanel()));
     }
 }

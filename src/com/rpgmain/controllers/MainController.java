@@ -13,7 +13,7 @@ public class MainController {
     }
 
     public static void newGame() {
-        WindowController.changeWindow(new MainGamePanel());
+        WindowController.changeWindow(new MainGameContainerPanel());
     }
 
     public static void saveGame(int saveSlot) {
@@ -22,5 +22,9 @@ public class MainController {
 
     public static void loadGame(int saveSlot) {
         System.out.println(saveSlot);
+    }
+
+    public static void changeSetting(int settingPos, int value) {
+
     }
 }
