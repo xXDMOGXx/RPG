@@ -1,9 +1,21 @@
 package com.rpgmain.controllers;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import javax.swing.ImageIcon;
 import java.util.Objects;
+import java.awt.Insets;
+import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.Graphics;
 
 public class WindowController {
     private static final JFrame frame = new JFrame("Generic RPG");
@@ -93,6 +105,7 @@ class MainMenuPanel extends JPanel {
 class MainGameContainerPanel extends JPanel {
     public MainGameContainerPanel() {
         initUI();
+        this.setName("Game Container");
     }
 
     private void initUI() {
@@ -108,6 +121,7 @@ class MainGamePanel extends JPanel {
     private final Image circle;
     public MainGamePanel() {
         initUI();
+        this.setName("Game Player");
         circle = new ImageIcon(Objects.requireNonNull(MainGamePanel.class.getResource("/com/rpgmain/resources/circle.jpg"))).getImage();
     }
     private void initUI() {
@@ -119,7 +133,7 @@ class MainGamePanel extends JPanel {
         title.setPreferredSize(new Dimension(300, 50));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createRigidArea(new Dimension(912, 75)));
+        add(Box.createRigidArea(new Dimension(912, 0)));
         add(title);
     }
 
@@ -133,6 +147,7 @@ class MainGamePanel extends JPanel {
 class SideMenuPanel extends JPanel {
     public SideMenuPanel() {
         initUI();
+        this.setName("Side Settings");
     }
     private void initUI() {
         BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);

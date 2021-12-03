@@ -1,6 +1,6 @@
 package com.rpgmain.controllers;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 public class MainController {
 
