@@ -1,5 +1,7 @@
 package com.rpgmain.controllers;
 
+import com.rpgmain.misc.Settings;
+
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -19,8 +21,7 @@ import java.awt.Graphics;
 
 public class WindowController {
     private static final JFrame frame = new JFrame("Generic RPG");
-    public static String currentWindow = "";
-    // Window Size is 1248 x 720
+    public static String currentWindow;
 
     public static void startWindow(JPanel panel) {
         frame.add(panel);
@@ -46,6 +47,7 @@ public class WindowController {
 }
 
 class MainMenuPanel extends JPanel {
+    int baseSize = Settings.tileSize;
     public MainMenuPanel() {
         initUI();
         this.setName("Main Menu");
@@ -54,44 +56,44 @@ class MainMenuPanel extends JPanel {
     private void initUI() {
         BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(boxlayout);
-        setBorder(new EmptyBorder(new Insets(75, 0, 70, 0)));
+        setBorder(new EmptyBorder(new Insets(baseSize, 0, baseSize/2, 0)));
 
         JLabel title = new JLabel("Generic RPG Game");
-        title.setPreferredSize(new Dimension(300, 50));
+        title.setPreferredSize(new Dimension(baseSize*7, baseSize));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton newButton = new JButton("New Game");
-        newButton.setPreferredSize(new Dimension(300, 75));
+        newButton.setPreferredSize(new Dimension(baseSize*7, baseSize*2));
         newButton.setMaximumSize(newButton.getPreferredSize());
         newButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton loadButton = new JButton("Load");
-        loadButton.setPreferredSize(new Dimension(300, 75));
+        loadButton.setPreferredSize(new Dimension(baseSize*7, baseSize*2));
         loadButton.setMaximumSize(loadButton.getPreferredSize());
         loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton settingsButton = new JButton("Settings");
-        settingsButton.setPreferredSize(new Dimension(300, 75));
+        settingsButton.setPreferredSize(new Dimension(baseSize*7, baseSize*2));
         settingsButton.setMaximumSize(settingsButton.getPreferredSize());
         settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton quitButton = new JButton("Quit");
-        quitButton.setPreferredSize(new Dimension(300, 75));
+        quitButton.setPreferredSize(new Dimension(baseSize*7, baseSize*2));
         quitButton.setMaximumSize(quitButton.getPreferredSize());
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createRigidArea(new Dimension(1248, 0)));
+        add(Box.createRigidArea(new Dimension(baseSize*26, 0)));
         add(title);
-        add(Box.createRigidArea(new Dimension(0, 150)));
+        add(Box.createRigidArea(new Dimension(0, baseSize*3)));
         add(Box.createVerticalGlue());
         add(newButton);
-        add(Box.createRigidArea(new Dimension(0, 25)));
+        add(Box.createRigidArea(new Dimension(0, baseSize/2)));
         add(Box.createVerticalGlue());
         add(loadButton);
-        add(Box.createRigidArea(new Dimension(0, 25)));
+        add(Box.createRigidArea(new Dimension(0, baseSize/2)));
         add(Box.createVerticalGlue());
         add(settingsButton);
-        add(Box.createRigidArea(new Dimension(0, 25)));
+        add(Box.createRigidArea(new Dimension(0, baseSize/2)));
         add(Box.createVerticalGlue());
         add(quitButton);
 
@@ -118,6 +120,7 @@ class MainGameContainerPanel extends JPanel {
 }
 
 class MainGamePanel extends JPanel {
+    int baseSize = Settings.tileSize;
     private final Image circle;
     public MainGamePanel() {
         initUI();
@@ -127,13 +130,13 @@ class MainGamePanel extends JPanel {
     private void initUI() {
         BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(boxlayout);
-        setBorder(new EmptyBorder(new Insets(75, 0, 595, 0)));
+        setBorder(new EmptyBorder(new Insets(baseSize, 0, baseSize*13, 0)));
 
         JLabel title = new JLabel("Image Test");
-        title.setPreferredSize(new Dimension(300, 50));
+        title.setPreferredSize(new Dimension(baseSize*7, baseSize));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createRigidArea(new Dimension(912, 0)));
+        add(Box.createRigidArea(new Dimension(baseSize*19, 0)));
         add(title);
     }
 
@@ -145,6 +148,7 @@ class MainGamePanel extends JPanel {
 }
 
 class SideMenuPanel extends JPanel {
+    int baseSize = Settings.tileSize;
     public SideMenuPanel() {
         initUI();
         this.setName("Side Settings");
@@ -152,18 +156,18 @@ class SideMenuPanel extends JPanel {
     private void initUI() {
         BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(boxlayout);
-        setBorder(new EmptyBorder(new Insets(75, 0, 520, 0)));
+        setBorder(new EmptyBorder(new Insets(baseSize, 0, baseSize*11, 0)));
 
         JLabel title = new JLabel("Side Menu");
-        title.setPreferredSize(new Dimension(300, 50));
+        title.setPreferredSize(new Dimension(baseSize*7, baseSize));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton backButton = new JButton("Back");
-        backButton.setPreferredSize(new Dimension(300, 75));
+        backButton.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         backButton.setMaximumSize(backButton.getPreferredSize());
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createRigidArea(new Dimension(336, 0)));
+        add(Box.createRigidArea(new Dimension(baseSize*7, 0)));
         add(title);
         add(Box.createVerticalGlue());
         add(backButton);
@@ -173,6 +177,7 @@ class SideMenuPanel extends JPanel {
 }
 
 class LoadMenuPanel extends JPanel {
+    int baseSize = Settings.tileSize;
     public LoadMenuPanel() {
         initUI();
         this.setName("Main Load");
@@ -181,40 +186,40 @@ class LoadMenuPanel extends JPanel {
     private void initUI() {
         BoxLayout boxlayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(boxlayout);
-        setBorder(new EmptyBorder(new Insets(75, 0, 70, 0)));
+        setBorder(new EmptyBorder(new Insets(baseSize, 0, baseSize/2, 0)));
 
         JLabel title = new JLabel("Load Menu");
-        title.setPreferredSize(new Dimension(300, 50));
+        title.setPreferredSize(new Dimension(baseSize*7, baseSize));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton save1Button = new JButton("Save Slot 1");
-        save1Button.setPreferredSize(new Dimension(300, 75));
+        save1Button.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         save1Button.setMaximumSize(save1Button.getPreferredSize());
         save1Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton save2Button = new JButton("Save Slot 1");
-        save2Button.setPreferredSize(new Dimension(300, 75));
+        JButton save2Button = new JButton("Save Slot 2");
+        save2Button.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         save2Button.setMaximumSize(save2Button.getPreferredSize());
         save2Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton save3Button = new JButton("Save Slot 1");
-        save3Button.setPreferredSize(new Dimension(300, 75));
+        JButton save3Button = new JButton("Save Slot 3");
+        save3Button.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         save3Button.setMaximumSize(save3Button.getPreferredSize());
         save3Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton save4Button = new JButton("Save Slot 1");
-        save4Button.setPreferredSize(new Dimension(300, 75));
+        JButton save4Button = new JButton("Save Slot 4");
+        save4Button.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         save4Button.setMaximumSize(save4Button.getPreferredSize());
         save4Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton menuButton = new JButton("Back");
-        menuButton.setPreferredSize(new Dimension(300, 75));
+        menuButton.setPreferredSize(new Dimension(baseSize*7, baseSize*2));
         menuButton.setMaximumSize(menuButton.getPreferredSize());
         menuButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createRigidArea(new Dimension(1248, 0)));
+        add(Box.createRigidArea(new Dimension(baseSize*26, 0)));
         add(title);
-        add(Box.createRigidArea(new Dimension(0, 100)));
+        add(Box.createRigidArea(new Dimension(0, baseSize*2)));
         add(Box.createVerticalGlue());
         add(save1Button);
         add(Box.createVerticalGlue());
@@ -223,7 +228,7 @@ class LoadMenuPanel extends JPanel {
         add(save3Button);
         add(Box.createVerticalGlue());
         add(save4Button);
-        add(Box.createRigidArea(new Dimension(0, 50)));
+        add(Box.createRigidArea(new Dimension(0, baseSize/2)));
         add(Box.createVerticalGlue());
         add(menuButton);
 
@@ -236,6 +241,7 @@ class LoadMenuPanel extends JPanel {
 }
 
 class SettingsMenuPanel extends JPanel {
+    int baseSize = Settings.tileSize;
     public SettingsMenuPanel() {
         initUI();
         this.setName("Main Settings");
@@ -244,13 +250,13 @@ class SettingsMenuPanel extends JPanel {
     private void initUI() {
         BoxLayout mainLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(mainLayout);
-        setBorder(new EmptyBorder(new Insets(75, 0, 70, 0)));
+        setBorder(new EmptyBorder(new Insets(baseSize, 0, baseSize/2, 0)));
 
         JPanel panel = new JPanel();
         BoxLayout subLayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
         panel.setLayout(subLayout);
         JScrollPane jScrollPane = new JScrollPane(panel);
-        jScrollPane.setPreferredSize(new Dimension(300, 350));
+        jScrollPane.setPreferredSize(new Dimension(baseSize*7, baseSize*8));
         jScrollPane.setMaximumSize(jScrollPane.getPreferredSize());
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -258,33 +264,33 @@ class SettingsMenuPanel extends JPanel {
         jScrollPane.getViewport().add(panel);
 
         JLabel title = new JLabel("Settings Menu");
-        title.setPreferredSize(new Dimension(300, 50));
+        title.setPreferredSize(new Dimension(baseSize*7, baseSize));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton audioToggle = new JButton("Play Audio");
-        audioToggle.setPreferredSize(new Dimension(200, 75));
+        audioToggle.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         audioToggle.setMaximumSize(audioToggle.getPreferredSize());
         audioToggle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton runToggle = new JButton("Always Run");
-        runToggle.setPreferredSize(new Dimension(200, 75));
+        runToggle.setPreferredSize(new Dimension(baseSize*6, baseSize*2));
         runToggle.setMaximumSize(runToggle.getPreferredSize());
         runToggle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton backButton = new JButton("Back");
-        backButton.setPreferredSize(new Dimension(300, 75));
+        backButton.setPreferredSize(new Dimension(baseSize*7, baseSize*2));
         backButton.setMaximumSize(backButton.getPreferredSize());
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(audioToggle);
         panel.add(runToggle);
 
-        add(Box.createRigidArea(new Dimension(1248, 0)));
+        add(Box.createRigidArea(new Dimension(baseSize*26, 0)));
         add(title);
-        add(Box.createRigidArea(new Dimension(0, 50)));
+        add(Box.createRigidArea(new Dimension(0, baseSize*2)));
         add(Box.createVerticalGlue());
         add(jScrollPane);
-        add(Box.createRigidArea(new Dimension(0, 50)));
+        add(Box.createRigidArea(new Dimension(0, baseSize/2)));
         add(Box.createVerticalGlue());
         add(backButton);
 
