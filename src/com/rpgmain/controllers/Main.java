@@ -21,7 +21,7 @@ public class Main {
     }
 
     public static void loadGame(int saveSlot) {
-        System.out.println(saveSlot);
+        System.out.println(NPCController.retrieveNPCData(saveSlot));
     }
 
     public static void changeSetting(int settingPos, int value) {

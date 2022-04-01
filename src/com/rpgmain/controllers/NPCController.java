@@ -1,20 +1,35 @@
 package com.rpgmain.controllers;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.io.File;
+import java.util.Scanner;
 
 public class NPCController {
     private static ArrayList<NPC> npcList = new ArrayList<NPC>();
     private static int[][][] npcMap = {{{}}};
-    private static String npcInfoPath = "";
-    private static String retrieveNPCData(int entityID) {
-        return "";
+    private static final String npcInfoPath = "/com/rpgmain/resources/npcinfo.txt";
+    public static String retrieveNPCData(int entityID) {
+        String data = null;
+        try {
+            File npcInfo = new File("test.txt");
+            Scanner infoReader = new Scanner(npcInfo);
+            for (int i=0; i < entityID; i++) {
+                data = infoReader.nextLine();
+            }
+            infoReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("NPC File Not Found!");
+        }
+        return data;
     }
-    public static NPC constructNPC(int gameID) {
+    public static NPC constructNPC(int gameID, String npcData) {
         return new NPC();
     }
     public static void spawnNPC(int chunkID, int x, int y, int entityID) {
         String npcData = retrieveNPCData(entityID);
-        npcList.add(new NPC());
+
+        npcList.add(constructNPC(1, npcData));
     }
     public static void damageNPC(int damage) {
 
