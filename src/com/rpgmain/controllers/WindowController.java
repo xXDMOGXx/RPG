@@ -95,7 +95,7 @@ class MainMenuPanel extends JPanel {
         add(Box.createVerticalGlue());
         add(quitButton);
 
-        newButton.addActionListener(e -> MainController.newGame());
+        newButton.addActionListener(e -> Main.newGame());
         loadButton.addActionListener(e -> WindowController.changeWindow(new LoadMenuPanel()));
         settingsButton.addActionListener(e -> WindowController.changeWindow(new SettingsMenuPanel()));
         quitButton.addActionListener(e -> WindowController.closeWindow());
@@ -192,17 +192,17 @@ class LoadMenuPanel extends JPanel {
         save1Button.setMaximumSize(save1Button.getPreferredSize());
         save1Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton save2Button = new JButton("Save Slot 1");
+        JButton save2Button = new JButton("Save Slot 2");
         save2Button.setPreferredSize(new Dimension(300, 75));
         save2Button.setMaximumSize(save2Button.getPreferredSize());
         save2Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton save3Button = new JButton("Save Slot 1");
+        JButton save3Button = new JButton("Save Slot 3");
         save3Button.setPreferredSize(new Dimension(300, 75));
         save3Button.setMaximumSize(save3Button.getPreferredSize());
         save3Button.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton save4Button = new JButton("Save Slot 1");
+        JButton save4Button = new JButton("Save Slot 4");
         save4Button.setPreferredSize(new Dimension(300, 75));
         save4Button.setMaximumSize(save4Button.getPreferredSize());
         save4Button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -227,10 +227,10 @@ class LoadMenuPanel extends JPanel {
         add(Box.createVerticalGlue());
         add(menuButton);
 
-        save1Button.addActionListener(e -> MainController.loadGame(1));
-        save2Button.addActionListener(e -> MainController.loadGame(2));
-        save3Button.addActionListener(e -> MainController.loadGame(3));
-        save4Button.addActionListener(e -> MainController.loadGame(4));
+        save1Button.addActionListener(e -> Main.loadGame(1));
+        save2Button.addActionListener(e -> Main.loadGame(2));
+        save3Button.addActionListener(e -> Main.loadGame(3));
+        save4Button.addActionListener(e -> Main.loadGame(4));
         menuButton.addActionListener(e -> WindowController.changeWindow(new MainMenuPanel()));
     }
 }
@@ -288,8 +288,8 @@ class SettingsMenuPanel extends JPanel {
         add(Box.createVerticalGlue());
         add(backButton);
 
-        audioToggle.addActionListener(e -> MainController.changeSetting(0, 2));
-        runToggle.addActionListener(e -> MainController.changeSetting(0, 2));
+        audioToggle.addActionListener(e -> Main.changeSetting(0, 2));
+        runToggle.addActionListener(e -> Main.changeSetting(0, 2));
         backButton.addActionListener(e -> WindowController.changeWindow(new MainMenuPanel()));
     }
 }
